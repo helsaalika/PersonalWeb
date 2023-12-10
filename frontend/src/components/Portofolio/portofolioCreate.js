@@ -21,7 +21,7 @@ const PortofolioCreate = () => {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
-    setIdPerson(localStorage.getItem('id'))
+    setIdPerson(localStorage.getItem('id_person'))
   }, [])
 
   const redirectCancelButton = () => {

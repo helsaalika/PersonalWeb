@@ -27,7 +27,7 @@ const PendidikanCreate = () => {
   const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   useEffect(() => {
-    setIdPerson(localStorage.getItem("id"));
+    setIdPerson(localStorage.getItem("id_person"));
   }, []);
 
   const redirectCancelButton = () => {

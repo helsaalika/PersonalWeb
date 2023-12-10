@@ -23,7 +23,7 @@ const OrganisasiCreate = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setIdPerson(localStorage.getItem('id'));
+    setIdPerson(localStorage.getItem('id_person'));
   }, []);
 
   const redirectCancelButton = () => {
