@@ -78,6 +78,8 @@ const DataDiriCreate = () => {
       );
       console.log(response.data);
       const id_person = response.data.data.id_person;
+      localStorage.setItem('id_person', id_person)
+      console.log("id_person: ", id_person);
       navigate(`/datadiri/${id_akun}`);
     } catch (error) {
       setMsg(error.response.data.error);
