@@ -7,11 +7,13 @@ import jwt_decode from "jwt-decode";
 const Sidebar = () => {
   const navigate = useNavigate();
   const [id, setId] = useState("");
+  const [idPerson, setIdPerson] = useState("");
   const [role, setRole] = useState("");
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     setId(localStorage.getItem("id"));
+    setIdPerson(localStorage.getItem("id_person"));
     setRole(localStorage.getItem("role_akun"));
 
     if (role === "Admin") {
@@ -27,6 +29,7 @@ const Sidebar = () => {
       localStorage.removeItem('access_token');
       localStorage.removeItem('username_akun');
       localStorage.removeItem('role_akun');
+      localStorage.removeItem('id_person');
       axios.delete('http://localhost:5000/logout');
       navigate('/');
       console.log("berhasil logout")
@@ -70,81 +73,102 @@ const Sidebar = () => {
         </ul>
       ) : (
         <ul className="space-y-2 flex-1 overflow-y-auto ml-0 pl-0">
-          <li>
-            <Link
-              to={`/datadiri/${id}`}
-              className="flex items-center p-2  text-white rounded-md hover:bg-blue-400"
-              style={{ width: "100%" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              ></svg>
-              Data Diri
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={`/pendidikan/${id}`}
-              className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
-              style={{ width: "100%" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              ></svg>
-              Pendidikan
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={`/organisasi/${id}`}
-              className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
-              style={{ width: "100%" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              ></svg>
-              Organisasi
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={`/portofolio/${id}`}
-              className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
-              style={{ width: "100%" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              ></svg>
-              Portofolio
-            </Link>
-          </li>
-          <li>
-            <Link
-              to={`/skill/${id}`}
-              className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
-              style={{ width: "100%" }}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              ></svg>
-              Skill
-            </Link>
-          </li>
+          { idPerson === null ? (
+            <li>
+              <Link
+                to={`/datadiri/${id}`}
+                className="flex items-center p-2  text-white rounded-md hover:bg-blue-400"
+                style={{ width: "100%" }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                ></svg>
+                Data Diri
+              </Link>
+            </li>
+          ) : (
+            <>
+              <li>
+                <Link
+                  to={`/datadiri/${id}`}
+                  className="flex items-center p-2  text-white rounded-md hover:bg-blue-400"
+                  style={{ width: "100%" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  ></svg>
+                  Data Diri
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/pendidikan/${idPerson}`}
+                  className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
+                  style={{ width: "100%" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  ></svg>
+                  Pendidikan
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/organisasi/${idPerson}`}
+                  className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
+                  style={{ width: "100%" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  ></svg>
+                  Organisasi
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/portofolio/${idPerson}`}
+                  className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
+                  style={{ width: "100%" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  ></svg>
+                  Portofolio
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={`/skill/${idPerson}`}
+                  className="flex items-center p-2 text-white space-x-2 rounded-md hover:bg-blue-400"
+                  style={{ width: "100%" }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-5 w-5"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  ></svg>
+                  Skill
+                </Link>
+              </li>
+            </>
+          )}
+      
         </ul>
       )}
 
